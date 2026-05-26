@@ -426,3 +426,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/python,node,git,visualstudiocode,linux,windows,macos
+
+# Syncthing conflict files — never commit
+*.sync-conflict-*
