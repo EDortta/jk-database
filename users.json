@@ -173,6 +173,35 @@
                     ]
                 }
             ]
+        },
+        {
+            "name": "employee_credit_uy3_user",
+            "host": "%",
+            "password": "dd1b77d9cdbae6cbbb7823dd",
+            "privileges": [
+                {
+                    "database": "employee_credit_uy3",
+                    "tables": "*",
+                    "privileges": [
+                        "SELECT",
+                        "INSERT",
+                        "UPDATE",
+                        "DELETE",
+                        "CREATE",
+                        "ALTER",
+                        "DROP",
+                        "REFERENCES",
+                        "INDEX",
+                        "CREATE VIEW",
+                        "CREATE ROUTINE",
+                        "ALTER ROUTINE",
+                        "EVENT",
+                        "TRIGGER",
+                        "CREATE TEMPORARY TABLES",
+                        "LOCK TABLES"
+                    ]
+                }
+            ]
         }
     ]
 }
