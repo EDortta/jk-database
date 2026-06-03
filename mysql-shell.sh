@@ -32,18 +32,24 @@ if [ -z "$DB_PASS" ]; then
   exit 1
 fi
 
+# Use -it only when stdin is a real terminal; drop -t when piping a file
+if [ -t 0 ]; then
+  DOCKER_TTY="-it"
+else
+  DOCKER_TTY="-i"
+fi
+
 # Try docker exec into the running container first
 if docker ps --format '{{.Names}}' | grep -q "^${MYSQL_CONTAINER}\$"; then
-  echo "Conectando ao container '$MYSQL_CONTAINER' como usuário '$DB_USER'..."
-  docker exec -it "$MYSQL_CONTAINER" \
+  echo "Conectando ao container '$MYSQL_CONTAINER' como usuário '$DB_USER'..." >&2
+  docker exec $DOCKER_TTY "$MYSQL_CONTAINER" \
     mysql -u "$DB_USER" -p"$DB_PASS"
 else
   # Container not running — connect via exposed port using a temporary mysql-client container
-  NETWORK="${DOCKER_HOST_NETWORK:-jk-network}"
   EXPOSED_PORT="${MYSQL_EXPOSED_PORT:-33061}"
-  echo "Container '$MYSQL_CONTAINER' não está rodando."
-  echo "Tentando conexão via porta exposta $EXPOSED_PORT (host: 127.0.0.1)..."
-  docker run --rm -it \
+  echo "Container '$MYSQL_CONTAINER' não está rodando." >&2
+  echo "Tentando conexão via porta exposta $EXPOSED_PORT (host: 127.0.0.1)..." >&2
+  docker run --rm $DOCKER_TTY \
     --network host \
     mysql:8.0 \
     mysql -h 127.0.0.1 -P "$EXPOSED_PORT" -u "$DB_USER" -p"$DB_PASS"
