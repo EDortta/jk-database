@@ -175,6 +175,35 @@
             ]
         },
         {
+            "name": "payroll_loan_granatech_user",
+            "host": "%",
+            "password": "8472e62465ec04f1bcb18fe3",
+            "privileges": [
+                {
+                    "database": "payroll_loan_granatech",
+                    "tables": "*",
+                    "privileges": [
+                        "SELECT",
+                        "INSERT",
+                        "UPDATE",
+                        "DELETE",
+                        "CREATE",
+                        "ALTER",
+                        "DROP",
+                        "REFERENCES",
+                        "INDEX",
+                        "CREATE VIEW",
+                        "CREATE ROUTINE",
+                        "ALTER ROUTINE",
+                        "EVENT",
+                        "TRIGGER",
+                        "CREATE TEMPORARY TABLES",
+                        "LOCK TABLES"
+                    ]
+                }
+            ]
+        },
+        {
             "name": "employee_credit_uy3_user",
             "host": "%",
             "password": "dd1b77d9cdbae6cbbb7823dd",
