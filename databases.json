@@ -1,11 +1,9 @@
 [
     "core",
-    "employee_credit_qitech",
-    "credit_engine_qitech",
-    "credit_engine_uy3",
-    "employee_credit_uy3",
-    "queuesentry",
-    "wh_ingestor",
-    "billing_control_neofin",
-    "payroll_loan_granatech"
+    "ccb",
+    "employeecredit",
+    "fgtsbmp",
+    "payrollloanbmp",
+    "privatelabel",
+    "wh_ingestor"
 ]

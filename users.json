@@ -1,236 +1,88 @@
 {
-    "users": [
+  "users": [
+    {
+      "name": "core_user",
+      "host": "%",
+      "password": "Kxs3#Lm@Jk",
+      "privileges": [
         {
-            "name": "core_user",
-            "host": "%",
-            "password": "Kxs3#Lm@Jk",
-            "privileges": [
-                {
-                    "database": "core",
-                    "tables": "*",
-                    "privileges": [
-                        "SELECT",
-                        "INSERT",
-                        "UPDATE",
-                        "DELETE",
-                        "CREATE",
-                        "ALTER",
-                        "DROP",
-                        "REFERENCES",
-                        "INDEX",
-                        "CREATE VIEW",
-                        "CREATE ROUTINE",
-                        "ALTER ROUTINE",
-                        "EVENT",
-                        "TRIGGER",
-                        "CREATE TEMPORARY TABLES",
-                        "LOCK TABLES"
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "employee_credit_qitech_user",
-            "host": "%",
-            "password": "Qw4#Rt@Jk",
-            "privileges": [
-                {
-                    "database": "employee_credit_qitech",
-                    "tables": "*",
-                    "privileges": [
-                        "SELECT",
-                        "INSERT",
-                        "UPDATE",
-                        "DELETE",
-                        "CREATE",
-                        "ALTER",
-                        "DROP",
-                        "REFERENCES",
-                        "INDEX",
-                        "CREATE VIEW",
-                        "CREATE ROUTINE",
-                        "ALTER ROUTINE",
-                        "EVENT",
-                        "TRIGGER",
-                        "CREATE TEMPORARY TABLES",
-                        "LOCK TABLES"
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "credit_engine_qitech_user",
-            "host": "%",
-            "password": "rq24rHthK",
-            "privileges": [
-                {
-                    "database": "credit_engine_qitech",
-                    "tables": "*",
-                    "privileges": [
-                        "SELECT",
-                        "INSERT",
-                        "UPDATE",
-                        "DELETE",
-                        "CREATE",
-                        "ALTER",
-                        "DROP",
-                        "REFERENCES",
-                        "INDEX",
-                        "CREATE VIEW",
-                        "CREATE ROUTINE",
-                        "ALTER ROUTINE",
-                        "EVENT",
-                        "TRIGGER",
-                        "CREATE TEMPORARY TABLES",
-                        "LOCK TABLES"
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "queuesentry_user",
-            "host": "%",
-            "password": "iQ4#rH@hQ",
-            "privileges": [
-                {
-                    "database": "queuesentry",
-                    "tables": "*",
-                    "privileges": [
-                        "SELECT",
-                        "INSERT",
-                        "UPDATE",
-                        "DELETE",
-                        "CREATE",
-                        "ALTER",
-                        "DROP",
-                        "REFERENCES",
-                        "INDEX",
-                        "CREATE VIEW",
-                        "CREATE ROUTINE",
-                        "ALTER ROUTINE",
-                        "EVENT",
-                        "TRIGGER",
-                        "CREATE TEMPORARY TABLES",
-                        "LOCK TABLES"
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "wh_ingestor_user",
-            "host": "%",
-            "password": "axFn940P2NCZsnGt",
-            "privileges": [
-                {
-                    "database": "wh_ingestor",
-                    "tables": "*",
-                    "privileges": [
-                        "SELECT",
-                        "INSERT",
-                        "UPDATE",
-                        "DELETE",
-                        "CREATE",
-                        "ALTER",
-                        "DROP",
-                        "REFERENCES",
-                        "INDEX",
-                        "CREATE VIEW",
-                        "CREATE ROUTINE",
-                        "ALTER ROUTINE",
-                        "EVENT",
-                        "TRIGGER",
-                        "CREATE TEMPORARY TABLES",
-                        "LOCK TABLES"
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "billing_control_neofin_user",
-            "host": "%",
-            "password": "t4NuFuRTyVbYlJy0CNHT",
-            "privileges": [
-                {
-                    "database": "billing_control_neofin",
-                    "tables": "*",
-                    "privileges": [
-                        "SELECT",
-                        "INSERT",
-                        "UPDATE",
-                        "DELETE",
-                        "CREATE",
-                        "ALTER",
-                        "DROP",
-                        "REFERENCES",
-                        "INDEX",
-                        "CREATE VIEW",
-                        "CREATE ROUTINE",
-                        "ALTER ROUTINE",
-                        "EVENT",
-                        "TRIGGER",
-                        "CREATE TEMPORARY TABLES",
-                        "LOCK TABLES"
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "payroll_loan_granatech_user",
-            "host": "%",
-            "password": "8472e62465ec04f1bcb18fe3",
-            "privileges": [
-                {
-                    "database": "payroll_loan_granatech",
-                    "tables": "*",
-                    "privileges": [
-                        "SELECT",
-                        "INSERT",
-                        "UPDATE",
-                        "DELETE",
-                        "CREATE",
-                        "ALTER",
-                        "DROP",
-                        "REFERENCES",
-                        "INDEX",
-                        "CREATE VIEW",
-                        "CREATE ROUTINE",
-                        "ALTER ROUTINE",
-                        "EVENT",
-                        "TRIGGER",
-                        "CREATE TEMPORARY TABLES",
-                        "LOCK TABLES"
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "employee_credit_uy3_user",
-            "host": "%",
-            "password": "dd1b77d9cdbae6cbbb7823dd",
-            "privileges": [
-                {
-                    "database": "employee_credit_uy3",
-                    "tables": "*",
-                    "privileges": [
-                        "SELECT",
-                        "INSERT",
-                        "UPDATE",
-                        "DELETE",
-                        "CREATE",
-                        "ALTER",
-                        "DROP",
-                        "REFERENCES",
-                        "INDEX",
-                        "CREATE VIEW",
-                        "CREATE ROUTINE",
-                        "ALTER ROUTINE",
-                        "EVENT",
-                        "TRIGGER",
-                        "CREATE TEMPORARY TABLES",
-                        "LOCK TABLES"
-                    ]
-                }
-            ]
+          "database": "core",
+          "tables": "*",
+          "privileges": ["SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "ALTER", "DROP", "REFERENCES", "INDEX", "CREATE VIEW", "CREATE ROUTINE", "ALTER ROUTINE", "TRIGGER", "CREATE TEMPORARY TABLES", "LOCK TABLES"]
         }
-    ]
+      ]
+    },
+    {
+      "name": "ccb_user",
+      "host": "%",
+      "password": "mZ3#Pq@Jk",
+      "privileges": [
+        {
+          "database": "ccb",
+          "tables": "*",
+          "privileges": ["SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "ALTER", "DROP", "REFERENCES", "INDEX", "CREATE VIEW", "CREATE ROUTINE", "ALTER ROUTINE", "TRIGGER", "CREATE TEMPORARY TABLES", "LOCK TABLES"]
+        }
+      ]
+    },
+    {
+      "name": "employeecredit_user",
+      "host": "%",
+      "password": "Qw4#Rt@Jk",
+      "privileges": [
+        {
+          "database": "employeecredit",
+          "tables": "*",
+          "privileges": ["SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "ALTER", "DROP", "REFERENCES", "INDEX", "CREATE VIEW", "CREATE ROUTINE", "ALTER ROUTINE", "TRIGGER", "CREATE TEMPORARY TABLES", "LOCK TABLES"]
+        }
+      ]
+    },
+    {
+      "name": "fgtsbmp_user",
+      "host": "%",
+      "password": "Hk5#Jp@Jk",
+      "privileges": [
+        {
+          "database": "fgtsbmp",
+          "tables": "*",
+          "privileges": ["SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "ALTER", "DROP", "REFERENCES", "INDEX", "CREATE VIEW", "CREATE ROUTINE", "ALTER ROUTINE", "TRIGGER", "CREATE TEMPORARY TABLES", "LOCK TABLES"]
+        }
+      ]
+    },
+    {
+      "name": "payrollloanbmp_user",
+      "host": "%",
+      "password": "Xc3#Lq@Jk",
+      "privileges": [
+        {
+          "database": "payrollloanbmp",
+          "tables": "*",
+          "privileges": ["SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "ALTER", "DROP", "REFERENCES", "INDEX", "CREATE VIEW", "CREATE ROUTINE", "ALTER ROUTINE", "TRIGGER", "CREATE TEMPORARY TABLES", "LOCK TABLES"]
+        }
+      ]
+    },
+    {
+      "name": "wh_ingestor_user",
+      "host": "%",
+      "password": "axFn940P2NCZsnGt",
+      "privileges": [
+        {
+          "database": "wh_ingestor",
+          "tables": "*",
+          "privileges": ["SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "ALTER", "DROP", "REFERENCES", "INDEX", "CREATE VIEW", "CREATE ROUTINE", "ALTER ROUTINE", "TRIGGER", "CREATE TEMPORARY TABLES", "LOCK TABLES"]
+        }
+      ]
+    },
+    {
+      "name": "privatelabel_user",
+      "host": "%",
+      "password": "Rt4#Vw@Jk",
+      "privileges": [
+        {
+          "database": "privatelabel",
+          "tables": "*",
+          "privileges": ["SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "ALTER", "DROP", "REFERENCES", "INDEX", "CREATE VIEW", "CREATE ROUTINE", "ALTER ROUTINE", "TRIGGER", "CREATE TEMPORARY TABLES", "LOCK TABLES"]
+        }
+      ]
+    }
+  ]
 }
