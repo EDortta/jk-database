@@ -1,7 +1,7 @@
 import json
 import socket
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 
 from db_credentials import load_db_credentials
 from db_grants import ensure_can_manage_users
@@ -115,7 +115,7 @@ def collect_required_schema_privileges(users):
 def create_users():
     import mysql.connector
 
-    log(f"create_users.py started at {datetime.utcnow().isoformat()}Z")
+    log(f"create_users.py started at {datetime.now(timezone.utc).isoformat()}")
     with open('users.json') as file:
         data = json.load(file)
     credentials = load_db_credentials()
