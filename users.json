@@ -83,6 +83,18 @@
           "privileges": ["SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "ALTER", "DROP", "REFERENCES", "INDEX", "CREATE VIEW", "CREATE ROUTINE", "ALTER ROUTINE", "TRIGGER", "CREATE TEMPORARY TABLES", "LOCK TABLES"]
         }
       ]
+    },
+    {
+      "name": "webhook_proxy_user",
+      "host": "%",
+      "password": "Wh8kPx2mQ7rLvN3t",
+      "privileges": [
+        {
+          "database": "webhook_proxy",
+          "tables": "*",
+          "privileges": ["SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "ALTER", "DROP", "REFERENCES", "INDEX", "CREATE VIEW", "CREATE ROUTINE", "ALTER ROUTINE", "TRIGGER", "CREATE TEMPORARY TABLES", "LOCK TABLES"]
+        }
+      ]
     }
   ]
 }

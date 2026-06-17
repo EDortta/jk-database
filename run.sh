@@ -50,13 +50,28 @@ else
   )
 fi
 
+# Credenciais do admin do ProxySQL — encaminhadas só quando presentes. Sem elas,
+# proxysql_users.py faz no-op (ambiente sem ProxySQL).
+PROXY_ADMIN_ENV_ARGS=()
+if [ -n "$MYSQL_PROXY_ADMIN_HOST" ] && [ -n "$MYSQL_PROXY_ADMIN_PORT" ] && \
+   [ -n "$MYSQL_PROXY_ADMIN_USER" ] && [ -n "$MYSQL_PROXY_ADMIN_PASSWORD" ]; then
+  echo "Encaminhando MYSQL_PROXY_ADMIN_* para sync de usuários no ProxySQL ($MYSQL_PROXY_ADMIN_HOST:$MYSQL_PROXY_ADMIN_PORT)"
+  PROXY_ADMIN_ENV_ARGS=(
+    -e "MYSQL_PROXY_ADMIN_HOST=$MYSQL_PROXY_ADMIN_HOST"
+    -e "MYSQL_PROXY_ADMIN_PORT=$MYSQL_PROXY_ADMIN_PORT"
+    -e "MYSQL_PROXY_ADMIN_USER=$MYSQL_PROXY_ADMIN_USER"
+    -e "MYSQL_PROXY_ADMIN_PASSWORD=$MYSQL_PROXY_ADMIN_PASSWORD"
+  )
+fi
+
 docker run --rm \
   --name "$CONTAINER_NAME" \
   --network "$NETWORK" \
   -v "$PROJECT_ROOT":/workspace \
   -w /workspace/jk-database \
   "${ADMIN_ENV_ARGS[@]}" \
+  "${PROXY_ADMIN_ENV_ARGS[@]}" \
   "$IMAGE_NAME:latest" \
-  bash -c "figlet JK-DATABASE && python create_databases.py && python create_users.py"
+  bash -c "figlet JK-DATABASE && python create_databases.py && python create_users.py && python proxysql_users.py"
 
   echo $?
