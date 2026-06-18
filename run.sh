@@ -72,6 +72,6 @@ docker run --rm \
   "${ADMIN_ENV_ARGS[@]}" \
   "${PROXY_ADMIN_ENV_ARGS[@]}" \
   "$IMAGE_NAME:latest" \
-  bash -c "figlet JK-DATABASE && python create_databases.py && python create_users.py && python proxysql_users.py"
+  bash -c "figlet JK-DATABASE && python create_databases.py && python create_users.py && python create_dummy_tables.py && python proxysql_users.py"
 
   echo $?
