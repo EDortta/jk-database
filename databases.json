@@ -6,5 +6,6 @@
     "payrollloanbmp",
     "privatelabel",
     "wh_ingestor",
-    "webhook_proxy"
+    "webhook_proxy",
+    "dummy"
 ]

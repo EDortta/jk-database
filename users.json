@@ -95,6 +95,18 @@
           "privileges": ["SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "ALTER", "DROP", "REFERENCES", "INDEX", "CREATE VIEW", "CREATE ROUTINE", "ALTER ROUTINE", "TRIGGER", "CREATE TEMPORARY TABLES", "LOCK TABLES"]
         }
       ]
+    },
+    {
+      "name": "dummy_user",
+      "host": "%",
+      "password": "dummy_pass",
+      "privileges": [
+        {
+          "database": "dummy",
+          "tables": "*",
+          "privileges": ["SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "ALTER", "DROP", "REFERENCES", "INDEX", "CREATE VIEW", "CREATE ROUTINE", "ALTER ROUTINE", "TRIGGER", "CREATE TEMPORARY TABLES", "LOCK TABLES"]
+        }
+      ]
     }
   ]
 }
