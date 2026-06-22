@@ -7,5 +7,10 @@
     "privatelabel",
     "wh_ingestor",
     "webhook_proxy",
+    "credit_engine_uy3",
+    "credit_engine_milenio",
+    "employee_credit_uy3",
+    "payroll_margin_registrar",
+    "billing_control_neofin",
     "dummy"
 ]

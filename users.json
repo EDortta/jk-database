@@ -8,7 +8,23 @@
         {
           "database": "core",
           "tables": "*",
-          "privileges": ["SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "ALTER", "DROP", "REFERENCES", "INDEX", "CREATE VIEW", "CREATE ROUTINE", "ALTER ROUTINE", "TRIGGER", "CREATE TEMPORARY TABLES", "LOCK TABLES"]
+          "privileges": [
+            "SELECT",
+            "INSERT",
+            "UPDATE",
+            "DELETE",
+            "CREATE",
+            "ALTER",
+            "DROP",
+            "REFERENCES",
+            "INDEX",
+            "CREATE VIEW",
+            "CREATE ROUTINE",
+            "ALTER ROUTINE",
+            "TRIGGER",
+            "CREATE TEMPORARY TABLES",
+            "LOCK TABLES"
+          ]
         }
       ]
     },
@@ -20,7 +36,23 @@
         {
           "database": "ccb",
           "tables": "*",
-          "privileges": ["SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "ALTER", "DROP", "REFERENCES", "INDEX", "CREATE VIEW", "CREATE ROUTINE", "ALTER ROUTINE", "TRIGGER", "CREATE TEMPORARY TABLES", "LOCK TABLES"]
+          "privileges": [
+            "SELECT",
+            "INSERT",
+            "UPDATE",
+            "DELETE",
+            "CREATE",
+            "ALTER",
+            "DROP",
+            "REFERENCES",
+            "INDEX",
+            "CREATE VIEW",
+            "CREATE ROUTINE",
+            "ALTER ROUTINE",
+            "TRIGGER",
+            "CREATE TEMPORARY TABLES",
+            "LOCK TABLES"
+          ]
         }
       ]
     },
@@ -32,7 +64,23 @@
         {
           "database": "employeecredit",
           "tables": "*",
-          "privileges": ["SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "ALTER", "DROP", "REFERENCES", "INDEX", "CREATE VIEW", "CREATE ROUTINE", "ALTER ROUTINE", "TRIGGER", "CREATE TEMPORARY TABLES", "LOCK TABLES"]
+          "privileges": [
+            "SELECT",
+            "INSERT",
+            "UPDATE",
+            "DELETE",
+            "CREATE",
+            "ALTER",
+            "DROP",
+            "REFERENCES",
+            "INDEX",
+            "CREATE VIEW",
+            "CREATE ROUTINE",
+            "ALTER ROUTINE",
+            "TRIGGER",
+            "CREATE TEMPORARY TABLES",
+            "LOCK TABLES"
+          ]
         }
       ]
     },
@@ -44,7 +92,23 @@
         {
           "database": "fgtsbmp",
           "tables": "*",
-          "privileges": ["SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "ALTER", "DROP", "REFERENCES", "INDEX", "CREATE VIEW", "CREATE ROUTINE", "ALTER ROUTINE", "TRIGGER", "CREATE TEMPORARY TABLES", "LOCK TABLES"]
+          "privileges": [
+            "SELECT",
+            "INSERT",
+            "UPDATE",
+            "DELETE",
+            "CREATE",
+            "ALTER",
+            "DROP",
+            "REFERENCES",
+            "INDEX",
+            "CREATE VIEW",
+            "CREATE ROUTINE",
+            "ALTER ROUTINE",
+            "TRIGGER",
+            "CREATE TEMPORARY TABLES",
+            "LOCK TABLES"
+          ]
         }
       ]
     },
@@ -56,7 +120,23 @@
         {
           "database": "payrollloanbmp",
           "tables": "*",
-          "privileges": ["SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "ALTER", "DROP", "REFERENCES", "INDEX", "CREATE VIEW", "CREATE ROUTINE", "ALTER ROUTINE", "TRIGGER", "CREATE TEMPORARY TABLES", "LOCK TABLES"]
+          "privileges": [
+            "SELECT",
+            "INSERT",
+            "UPDATE",
+            "DELETE",
+            "CREATE",
+            "ALTER",
+            "DROP",
+            "REFERENCES",
+            "INDEX",
+            "CREATE VIEW",
+            "CREATE ROUTINE",
+            "ALTER ROUTINE",
+            "TRIGGER",
+            "CREATE TEMPORARY TABLES",
+            "LOCK TABLES"
+          ]
         }
       ]
     },
@@ -68,7 +148,23 @@
         {
           "database": "wh_ingestor",
           "tables": "*",
-          "privileges": ["SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "ALTER", "DROP", "REFERENCES", "INDEX", "CREATE VIEW", "CREATE ROUTINE", "ALTER ROUTINE", "TRIGGER", "CREATE TEMPORARY TABLES", "LOCK TABLES"]
+          "privileges": [
+            "SELECT",
+            "INSERT",
+            "UPDATE",
+            "DELETE",
+            "CREATE",
+            "ALTER",
+            "DROP",
+            "REFERENCES",
+            "INDEX",
+            "CREATE VIEW",
+            "CREATE ROUTINE",
+            "ALTER ROUTINE",
+            "TRIGGER",
+            "CREATE TEMPORARY TABLES",
+            "LOCK TABLES"
+          ]
         }
       ]
     },
@@ -80,7 +176,23 @@
         {
           "database": "privatelabel",
           "tables": "*",
-          "privileges": ["SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "ALTER", "DROP", "REFERENCES", "INDEX", "CREATE VIEW", "CREATE ROUTINE", "ALTER ROUTINE", "TRIGGER", "CREATE TEMPORARY TABLES", "LOCK TABLES"]
+          "privileges": [
+            "SELECT",
+            "INSERT",
+            "UPDATE",
+            "DELETE",
+            "CREATE",
+            "ALTER",
+            "DROP",
+            "REFERENCES",
+            "INDEX",
+            "CREATE VIEW",
+            "CREATE ROUTINE",
+            "ALTER ROUTINE",
+            "TRIGGER",
+            "CREATE TEMPORARY TABLES",
+            "LOCK TABLES"
+          ]
         }
       ]
     },
@@ -92,7 +204,163 @@
         {
           "database": "webhook_proxy",
           "tables": "*",
-          "privileges": ["SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "ALTER", "DROP", "REFERENCES", "INDEX", "CREATE VIEW", "CREATE ROUTINE", "ALTER ROUTINE", "TRIGGER", "CREATE TEMPORARY TABLES", "LOCK TABLES"]
+          "privileges": [
+            "SELECT",
+            "INSERT",
+            "UPDATE",
+            "DELETE",
+            "CREATE",
+            "ALTER",
+            "DROP",
+            "REFERENCES",
+            "INDEX",
+            "CREATE VIEW",
+            "CREATE ROUTINE",
+            "ALTER ROUTINE",
+            "TRIGGER",
+            "CREATE TEMPORARY TABLES",
+            "LOCK TABLES"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "credit_engine_uy3_user",
+      "host": "%",
+      "password": "676623a303aab14c4890860a",
+      "privileges": [
+        {
+          "database": "credit_engine_uy3",
+          "tables": "*",
+          "privileges": [
+            "SELECT",
+            "INSERT",
+            "UPDATE",
+            "DELETE",
+            "CREATE",
+            "ALTER",
+            "DROP",
+            "REFERENCES",
+            "INDEX",
+            "CREATE VIEW",
+            "CREATE ROUTINE",
+            "ALTER ROUTINE",
+            "TRIGGER",
+            "CREATE TEMPORARY TABLES",
+            "LOCK TABLES"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "credit_engine_milenio_user",
+      "host": "%",
+      "password": "phsPyKvDCrHZbphMxfJDkUr2",
+      "privileges": [
+        {
+          "database": "credit_engine_milenio",
+          "tables": "*",
+          "privileges": [
+            "SELECT",
+            "INSERT",
+            "UPDATE",
+            "DELETE",
+            "CREATE",
+            "ALTER",
+            "DROP",
+            "REFERENCES",
+            "INDEX",
+            "CREATE VIEW",
+            "CREATE ROUTINE",
+            "ALTER ROUTINE",
+            "TRIGGER",
+            "CREATE TEMPORARY TABLES",
+            "LOCK TABLES"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "employee_credit_uy3_user",
+      "host": "%",
+      "password": "KQX0hOZMIepiJaPoC4unSCbt",
+      "privileges": [
+        {
+          "database": "employee_credit_uy3",
+          "tables": "*",
+          "privileges": [
+            "SELECT",
+            "INSERT",
+            "UPDATE",
+            "DELETE",
+            "CREATE",
+            "ALTER",
+            "DROP",
+            "REFERENCES",
+            "INDEX",
+            "CREATE VIEW",
+            "CREATE ROUTINE",
+            "ALTER ROUTINE",
+            "TRIGGER",
+            "CREATE TEMPORARY TABLES",
+            "LOCK TABLES"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "payroll_margin_registrar_user",
+      "host": "%",
+      "password": "BRwfytCe51rJnhILCsIq8L7T",
+      "privileges": [
+        {
+          "database": "payroll_margin_registrar",
+          "tables": "*",
+          "privileges": [
+            "SELECT",
+            "INSERT",
+            "UPDATE",
+            "DELETE",
+            "CREATE",
+            "ALTER",
+            "DROP",
+            "REFERENCES",
+            "INDEX",
+            "CREATE VIEW",
+            "CREATE ROUTINE",
+            "ALTER ROUTINE",
+            "TRIGGER",
+            "CREATE TEMPORARY TABLES",
+            "LOCK TABLES"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "billing_control_neofin_user",
+      "host": "%",
+      "password": "t4NuFuRTyVbYlJy0CNHT",
+      "privileges": [
+        {
+          "database": "billing_control_neofin",
+          "tables": "*",
+          "privileges": [
+            "SELECT",
+            "INSERT",
+            "UPDATE",
+            "DELETE",
+            "CREATE",
+            "ALTER",
+            "DROP",
+            "REFERENCES",
+            "INDEX",
+            "CREATE VIEW",
+            "CREATE ROUTINE",
+            "ALTER ROUTINE",
+            "TRIGGER",
+            "CREATE TEMPORARY TABLES",
+            "LOCK TABLES"
+          ]
         }
       ]
     },
@@ -104,7 +372,23 @@
         {
           "database": "dummy",
           "tables": "*",
-          "privileges": ["SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "ALTER", "DROP", "REFERENCES", "INDEX", "CREATE VIEW", "CREATE ROUTINE", "ALTER ROUTINE", "TRIGGER", "CREATE TEMPORARY TABLES", "LOCK TABLES"]
+          "privileges": [
+            "SELECT",
+            "INSERT",
+            "UPDATE",
+            "DELETE",
+            "CREATE",
+            "ALTER",
+            "DROP",
+            "REFERENCES",
+            "INDEX",
+            "CREATE VIEW",
+            "CREATE ROUTINE",
+            "ALTER ROUTINE",
+            "TRIGGER",
+            "CREATE TEMPORARY TABLES",
+            "LOCK TABLES"
+          ]
         }
       ]
     }
