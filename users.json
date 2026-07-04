@@ -376,18 +376,7 @@
             "SELECT",
             "INSERT",
             "UPDATE",
-            "DELETE",
-            "CREATE",
-            "ALTER",
-            "DROP",
-            "REFERENCES",
-            "INDEX",
-            "CREATE VIEW",
-            "CREATE ROUTINE",
-            "ALTER ROUTINE",
-            "TRIGGER",
-            "CREATE TEMPORARY TABLES",
-            "LOCK TABLES"
+            "DELETE"
           ]
         }
       ]
