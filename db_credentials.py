@@ -9,6 +9,8 @@ ROOT_ENV_PATH = Path(__file__).resolve().parent.parent / ".env"
 # O campo "password" traz um placeholder "${VAR}" resolvido em runtime a partir
 # do ambiente (ou do .env raiz, não versionado).
 PASSWORD_PLACEHOLDER_RE = re.compile(r"^\$\{([A-Za-z_][A-Za-z0-9_]*)\}$")
+# SEC-0191: senhas resolvidas com menos que isto geram aviso no provisionamento.
+MIN_PASSWORD_LENGTH = 16
 MYSQL_ADMIN_KEYS = (
     "MYSQL_ADMIN_HOST",
     "MYSQL_ADMIN_PORT",
@@ -41,6 +43,22 @@ def _pick_first(values):
     return None
 
 
+def _warn_if_weak_password(user_name, value):
+    """SEC-0191: aviso (não fatal) para senha curta/previsível ainda em uso.
+
+    Senhas dos usuários de banco devem ter >= 24 caracteres aleatórios
+    (ex.: `openssl rand -base64 24`), sem template comum entre usuários.
+    Não falha para não travar re-provisionamento antes da rotação.
+    """
+    if len(value) < MIN_PASSWORD_LENGTH:
+        print(
+            f"[SEC-0191] AVISO: senha do usuário '{user_name}' tem menos de "
+            f"{MIN_PASSWORD_LENGTH} caracteres. Rotacione para >= 24 caracteres "
+            "aleatórios (openssl rand -base64 24).",
+            flush=True,
+        )
+
+
 def resolve_user_password(user, env_map=None):
     """Resolve a senha de uma entrada do users.json (SEC-0024).
 
@@ -58,6 +76,7 @@ def resolve_user_password(user, env_map=None):
 
     match = PASSWORD_PLACEHOLDER_RE.match(str(raw).strip())
     if not match:
+        _warn_if_weak_password(user_name, str(raw))
         return str(raw)
 
     var_name = match.group(1)
@@ -72,6 +91,7 @@ def resolve_user_password(user, env_map=None):
             f"que não está definida no ambiente nem em {ROOT_ENV_PATH}. "
             "Defina-a antes de provisionar (SEC-0024 — senhas fora do versionado)."
         )
+    _warn_if_weak_password(user_name, value)
     return value
 
 
