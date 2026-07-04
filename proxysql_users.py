@@ -19,6 +19,7 @@ import os
 import mysql.connector
 
 from create_users import exec_sql, log, wait_for_port_open
+from db_credentials import resolve_user_password
 
 # Espelha tools/proxysql/manage.py (WRITER_HOSTGROUP).
 WRITER_HOSTGROUP = 10
@@ -53,11 +54,13 @@ def sync_proxysql_users():
         data = json.load(file)
 
     users = [u for u in data.get("users", []) if isinstance(u, dict)]
+    # SEC-0024: senhas resolvidas do ambiente (placeholders ${VAR} no users.json),
+    # nunca lidas em texto claro do repositório.
     app_users = [
-        (str(u.get("name", "")).strip(), str(u.get("password", "")).strip())
+        (str(u.get("name", "")).strip(), resolve_user_password(u))
         for u in users
+        if str(u.get("name", "")).strip()
     ]
-    app_users = [(name, password) for name, password in app_users if name and password]
 
     log(f"Sincronizando {len(app_users)} app users no ProxySQL em {admin['host']}:{admin['port']}")
     wait_for_port_open(admin["host"], admin["port"])

@@ -64,6 +64,14 @@ if [ -n "$MYSQL_PROXY_ADMIN_HOST" ] && [ -n "$MYSQL_PROXY_ADMIN_PORT" ] && \
   )
 fi
 
+# SEC-0024: senhas dos app users (users.json usa placeholders ${USERS_PASSWORD_*})
+# vêm do .env raiz (não versionado) e são encaminhadas ao container via ambiente.
+USER_PASSWORD_ENV_ARGS=()
+for var in $(compgen -v | grep -E '^USERS_PASSWORD_' || true); do
+  USER_PASSWORD_ENV_ARGS+=( -e "$var=${!var}" )
+done
+echo "[SEC-0024] Encaminhando $(( ${#USER_PASSWORD_ENV_ARGS[@]} / 2 )) variáveis USERS_PASSWORD_* para o container"
+
 docker run --rm \
   --name "$CONTAINER_NAME" \
   --network "$NETWORK" \
@@ -71,6 +79,7 @@ docker run --rm \
   -w /workspace/jk-database \
   "${ADMIN_ENV_ARGS[@]}" \
   "${PROXY_ADMIN_ENV_ARGS[@]}" \
+  "${USER_PASSWORD_ENV_ARGS[@]}" \
   "$IMAGE_NAME:latest" \
   bash -c "figlet JK-DATABASE && python create_databases.py && python create_users.py && python create_dummy_tables.py && python proxysql_users.py"
 

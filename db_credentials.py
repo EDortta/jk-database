@@ -1,8 +1,15 @@
 import json
+import os
+import re
 from pathlib import Path
 
 
 ROOT_ENV_PATH = Path(__file__).resolve().parent.parent / ".env"
+
+# SEC-0024: senhas de app users não vivem mais em texto claro no users.json.
+# O campo "password" traz um placeholder "${VAR}" resolvido em runtime a partir
+# do ambiente (ou do .env raiz, não versionado).
+PASSWORD_PLACEHOLDER_RE = re.compile(r"^\$\{([A-Za-z_][A-Za-z0-9_]*)\}$")
 FALLBACK_CREDENTIALS_PATH = Path(__file__).resolve().parent / "my-credentials.json"
 MYSQL_ADMIN_KEYS = (
     "MYSQL_ADMIN_HOST",
@@ -42,6 +49,40 @@ def _pick_first(values):
         if text != "":
             return text
     return None
+
+
+def resolve_user_password(user, env_map=None):
+    """Resolve a senha de uma entrada do users.json (SEC-0024).
+
+    - "${VAR}" -> busca VAR em os.environ e depois no .env raiz (não versionado).
+    - Valor literal -> mantido por retrocompatibilidade (não recomendado).
+    Levanta RuntimeError se a variável referenciada não estiver definida.
+    """
+    user_name = str(user.get("name", "")).strip() or "<sem nome>"
+    raw = user.get("password")
+    if raw is None or str(raw).strip() == "":
+        raise RuntimeError(
+            f"Usuário '{user_name}' em users.json não tem campo 'password'. "
+            "Use um placeholder \"${USERS_PASSWORD_<NOME>}\" e defina a variável no ambiente."
+        )
+
+    match = PASSWORD_PLACEHOLDER_RE.match(str(raw).strip())
+    if not match:
+        return str(raw)
+
+    var_name = match.group(1)
+    value = os.environ.get(var_name)
+    if value is None or value == "":
+        if env_map is None:
+            env_map = load_env_map(ROOT_ENV_PATH)
+        value = env_map.get(var_name)
+    if value is None or value == "":
+        raise RuntimeError(
+            f"Senha do usuário '{user_name}' referencia a variável '{var_name}', "
+            f"que não está definida no ambiente nem em {ROOT_ENV_PATH}. "
+            "Defina-a antes de provisionar (SEC-0024 — senhas fora do versionado)."
+        )
+    return value
 
 
 def load_db_credentials():
