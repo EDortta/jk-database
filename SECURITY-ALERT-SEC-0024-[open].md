@@ -1,4 +1,4 @@
-<!-- id: SEC-0024 | status: open | grupo: ZeeCred | severidade: critica -->
+<!-- id: SEC-0024 | status: open | grupo: ZeeCred | severidade: critica | relacionadas: SEC-0189, SEC-0190, SEC-0191 -->
 
 # SECURITY ALERT — SEC-0024: senhas de usuários de banco versionadas em texto claro
 
@@ -66,3 +66,43 @@ intencional — nunca provisionar com senha ausente ou em claro no repo).
 
 Nenhum push, deploy ou rotação foi executado por este agente (proibido sem
 aprovação explícita do operador).
+
+---
+
+## Adendo 2026-07-04 — SEC-0189 / SEC-0190 / SEC-0191 (mesma branch)
+
+### O que foi feito no código
+
+- **SEC-0190**: `my-credentials.json` (root/`rootpass`) removido do versionamento
+  e do working tree; adicionado ao `.gitignore`. `db_credentials.py` não tem mais
+  fallback de credenciais: sem `MYSQL_ADMIN_*` (ou `MYSQL_ROOT_*` em modo dev) no
+  ambiente/`.env` raiz, o provisionamento falha com erro claro. Variáveis passadas
+  por `run.sh` via `-e` agora têm precedência sobre o `.env`. Criado `.env.example`
+  documentando todas as variáveis exigidas (sem valores reais).
+- **SEC-0189**: privilégios do `dummy_user` em `users.json` reduzidos ao mínimo que
+  o scheduler de jobs precisa (`SELECT/INSERT/UPDATE/DELETE` em `dummy.*`);
+  removidos `CREATE/ALTER/DROP/CREATE ROUTINE/TRIGGER/...`. O DDL de
+  `jobs`/`job_events` já é aplicado com credencial admin (`create_dummy_tables.py`).
+  No próximo provisionamento, `create_users.py` REVOGA os privilégios excedentes.
+- **SEC-0191**: `resolve_user_password()` agora emite aviso `[SEC-0191]` (não fatal)
+  quando a senha resolvida tem menos de 16 caracteres, para expor senhas fracas
+  remanescentes a cada provisionamento.
+
+### ROTAÇÕES PENDENTES (ação humana obrigatória — needs_operator)
+
+1. **SEC-0190 — root/`rootpass`**: verificar TODOS os MySQL dev/staging criados com o
+   fallback antigo e trocar a senha do `root` (`rootpass` está público no histórico
+   git desde `661a524`). Nunca reutilizar `rootpass`.
+2. **SEC-0189 — `dummy_user`**: rotacionar `dummy_pass` (exposta no histórico) em
+   MySQL **e** ProxySQL de todos os ambientes (inclusive produção — o `run.sh`
+   provisionava esse usuário incondicionalmente); atualizar
+   `USERS_PASSWORD_DUMMY_USER` no `.env` e re-provisionar para aplicar também a
+   redução de privilégios (REVOKE). Avaliar restringir `host` (`%` hoje) à rede do
+   ProxySQL/backend.
+3. **SEC-0191 — senhas curtas com template `Xx9#Xx@Jk`**: ao rotacionar as senhas de
+   `core_user`, `ccb_user`, `employeecredit_user`, `fgtsbmp_user`,
+   `payrollloanbmp_user` e `privatelabel_user` (obrigatório pelo SEC-0024), gerar
+   >= 24 caracteres aleatórios POR USUÁRIO, sem template comum:
+   `openssl rand -base64 24`. O mesmo vale para os demais usuários da lista acima.
+4. Após as rotações: limpeza de histórico git (filter-repo/BFG) coordenada, como já
+   descrito na pendência do SEC-0024.

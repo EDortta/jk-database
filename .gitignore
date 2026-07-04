@@ -155,6 +155,9 @@ users.*.local.json
 *.secrets.json
 *.secrets.env
 
+# SEC-0190 — fallback de credenciais root removido do versionamento; nunca re-adicionar
+my-credentials.json
+
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 .parcel-cache

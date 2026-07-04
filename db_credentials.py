@@ -1,4 +1,3 @@
-import json
 import os
 import re
 from pathlib import Path
@@ -10,7 +9,6 @@ ROOT_ENV_PATH = Path(__file__).resolve().parent.parent / ".env"
 # O campo "password" traz um placeholder "${VAR}" resolvido em runtime a partir
 # do ambiente (ou do .env raiz, não versionado).
 PASSWORD_PLACEHOLDER_RE = re.compile(r"^\$\{([A-Za-z_][A-Za-z0-9_]*)\}$")
-FALLBACK_CREDENTIALS_PATH = Path(__file__).resolve().parent / "my-credentials.json"
 MYSQL_ADMIN_KEYS = (
     "MYSQL_ADMIN_HOST",
     "MYSQL_ADMIN_PORT",
@@ -31,14 +29,6 @@ def load_env_map(path):
         key, value = line.split("=", 1)
         result[key.strip()] = value.strip().strip('"').strip("'")
     return result
-
-
-def load_json_file(path):
-    json_path = Path(path)
-    if not json_path.exists():
-        return {}
-    with json_path.open(encoding="utf-8") as handle:
-        return json.load(handle)
 
 
 def _pick_first(values):
@@ -86,8 +76,15 @@ def resolve_user_password(user, env_map=None):
 
 
 def load_db_credentials():
-    env_map = load_env_map(ROOT_ENV_PATH)
-    fallback = load_json_file(FALLBACK_CREDENTIALS_PATH)
+    """Credenciais admin do MySQL — SOMENTE de os.environ ou do .env raiz.
+
+    SEC-0190: o fallback versionado my-credentials.json (root/rootpass) foi
+    removido. Sem credenciais no ambiente/.env o provisionamento falha com
+    erro claro em vez de tentar silenciosamente uma senha conhecida.
+    """
+    env_map = dict(load_env_map(ROOT_ENV_PATH))
+    # os.environ tem precedência (run.sh injeta as variáveis no container).
+    env_map.update(os.environ)
     admin_values = {key: env_map.get(key) for key in MYSQL_ADMIN_KEYS}
     admin_present = [key for key, value in admin_values.items() if value is not None]
 
@@ -109,25 +106,21 @@ def load_db_credentials():
     host = _pick_first([
         env_map.get("MYSQL_HOST"),
         env_map.get("DB_HOST"),
-        fallback.get("host"),
     ])
     port = _pick_first([
         env_map.get("MYSQL_EXPOSED_PORT"),
         env_map.get("MYSQL_PORT"),
         env_map.get("DB_PORT"),
-        fallback.get("port"),
     ])
     username = _pick_first([
         env_map.get("MYSQL_ROOT_USER"),
         env_map.get("MYSQL_USER"),
         env_map.get("DB_USERNAME"),
-        fallback.get("username"),
     ])
     password = _pick_first([
         env_map.get("MYSQL_ROOT_PASSWORD"),
         env_map.get("MYSQL_PASSWORD"),
         env_map.get("DB_PASSWORD"),
-        fallback.get("password"),
     ])
 
     missing = [name for name, value in {
@@ -140,7 +133,10 @@ def load_db_credentials():
         missing_text = ", ".join(missing)
         raise RuntimeError(
             f"Missing DB credentials: {missing_text}. "
-            f"Expected them in {ROOT_ENV_PATH} or {FALLBACK_CREDENTIALS_PATH}."
+            "Define MYSQL_ADMIN_* (ou MYSQL_HOST/MYSQL_EXPOSED_PORT/"
+            "MYSQL_ROOT_USER/MYSQL_ROOT_PASSWORD) no ambiente ou em "
+            f"{ROOT_ENV_PATH} (ver .env.example). "
+            "SEC-0190: não existe mais fallback versionado de credenciais."
         )
 
     return {
