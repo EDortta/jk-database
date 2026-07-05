@@ -30,7 +30,8 @@ def wait_for_port_open(host, port):
 
 print("Waiting for MySQL to start...")
 print(f"Host: {credentials['host']} Port: {credentials['port']}")
-print(f"Username: {credentials['username']} Password: {credentials['password']}")
+# SEC-0092: nunca logar a senha admin — apenas host/porta/usuário.
+print(f"Username: {credentials['username']}")
 time.sleep(5)
 wait_for_port_open(credentials['host'], credentials['port'])
 print(
