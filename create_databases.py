@@ -1,8 +1,14 @@
 import mysql.connector
 import json
+import re
 
+from create_users import quote_mysql_identifier
 from db_credentials import load_db_credentials
 from db_grants import ensure_can_create_databases
+
+# SEC-0277: nomes de banco vêm de databases.json e são interpolados em SQL
+# executado com privilégios admin — restringe ao formato seguro.
+DATABASE_NAME_PATTERN = re.compile(r"^[A-Za-z0-9_]+$")
 
 with open('databases.json') as f:
     databases = json.load(f)
@@ -52,7 +58,12 @@ cursor = cnx.cursor()
 ensure_can_create_databases(cursor)
 
 for db in databases:
-    sql = f"CREATE DATABASE IF NOT EXISTS {db} CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+    if not DATABASE_NAME_PATTERN.match(str(db)):
+        raise ValueError(f"Nome de banco inválido em databases.json: {db!r}")
+    sql = (
+        f"CREATE DATABASE IF NOT EXISTS {quote_mysql_identifier(db)} "
+        "CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+    )
     print(sql)
     cursor.execute(sql)
 
