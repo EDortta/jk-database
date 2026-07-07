@@ -1,9 +1,9 @@
 import json
 import socket
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 
-from db_credentials import load_db_credentials
+from db_credentials import load_db_credentials, resolve_user_password
 from db_grants import ensure_can_manage_users
 
 
@@ -48,6 +48,12 @@ def wait_for_port_open(host, port):
 
 def exec_sql(cursor, sql):
     log(sql)
+    cursor.execute(sql)
+
+
+def exec_sql_redacted(cursor, sql, redacted_sql):
+    """Executa SQL sensível logando a versão redigida (SEC-0024: sem senha em log)."""
+    log(redacted_sql)
     cursor.execute(sql)
 
 
@@ -115,7 +121,7 @@ def collect_required_schema_privileges(users):
 def create_users():
     import mysql.connector
 
-    log(f"create_users.py started at {datetime.utcnow().isoformat()}Z")
+    log(f"create_users.py started at {datetime.now(timezone.utc).isoformat()}")
     with open('users.json') as file:
         data = json.load(file)
     credentials = load_db_credentials()
@@ -145,14 +151,23 @@ def create_users():
     for user in users:
         user_name = user['name']
         user_host = user['host']
-        user_password = user['password']
+        # SEC-0024: senha vem do ambiente via placeholder, nunca em claro no repo.
+        user_password = resolve_user_password(user)
         user_id = build_user_id(user_name, user_host)
         grantee = build_grantee(user_name, user_host)
         desired_by_schema = desired_schema_privileges_for_user(user)
         current_by_schema = fetch_current_schema_privileges(cursor, grantee)
 
-        exec_sql(cursor, f"CREATE USER IF NOT EXISTS {user_id} IDENTIFIED BY {quote_mysql_string(user_password)}")
-        exec_sql(cursor, f"ALTER USER {user_id} IDENTIFIED BY {quote_mysql_string(user_password)}")
+        exec_sql_redacted(
+            cursor,
+            f"CREATE USER IF NOT EXISTS {user_id} IDENTIFIED BY {quote_mysql_string(user_password)}",
+            f"CREATE USER IF NOT EXISTS {user_id} IDENTIFIED BY '***'",
+        )
+        exec_sql_redacted(
+            cursor,
+            f"ALTER USER {user_id} IDENTIFIED BY {quote_mysql_string(user_password)}",
+            f"ALTER USER {user_id} IDENTIFIED BY '***'",
+        )
 
         for database_name, desired_privileges in sorted(desired_by_schema.items()):
             db_scope = f"{quote_mysql_identifier(database_name)}.*"

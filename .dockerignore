@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+my-credentials.json
+dados-inventados/
+estrutura/
+replication/
+tests/
+*.sh
+*.md
+*.sql
+*.gz
+*.bkp
+.git
+.gitignore
+.DS_Store

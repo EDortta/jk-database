@@ -30,14 +30,57 @@ if docker ps -a --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}\$"; then
   docker rm -f "$CONTAINER_NAME" >/dev/null 2>&1 || true
 fi
 
+ADMIN_ENV_ARGS=()
+if [ -n "$MYSQL_ADMIN_HOST" ] && [ -n "$MYSQL_ADMIN_PORT" ] && \
+   [ -n "$MYSQL_ADMIN_USER" ] && [ -n "$MYSQL_ADMIN_PASSWORD" ]; then
+  echo "Usando MYSQL_ADMIN_* do .env para conectar em $MYSQL_ADMIN_HOST:$MYSQL_ADMIN_PORT"
+  ADMIN_ENV_ARGS=(
+    -e "MYSQL_ADMIN_HOST=$MYSQL_ADMIN_HOST"
+    -e "MYSQL_ADMIN_PORT=$MYSQL_ADMIN_PORT"
+    -e "MYSQL_ADMIN_USER=$MYSQL_ADMIN_USER"
+    -e "MYSQL_ADMIN_PASSWORD=$MYSQL_ADMIN_PASSWORD"
+  )
+else
+  echo "MYSQL_ADMIN_* não configurados — usando mysql:3306 (modo dev)"
+  ADMIN_ENV_ARGS=(
+    -e MYSQL_HOST="mysql"
+    -e MYSQL_EXPOSED_PORT="3306"
+    -e "MYSQL_ROOT_USER=${MYSQL_ROOT_USER:-root}"
+    -e "MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD"
+  )
+fi
+
+# Credenciais do admin do ProxySQL — encaminhadas só quando presentes. Sem elas,
+# proxysql_users.py faz no-op (ambiente sem ProxySQL).
+PROXY_ADMIN_ENV_ARGS=()
+if [ -n "$MYSQL_PROXY_ADMIN_HOST" ] && [ -n "$MYSQL_PROXY_ADMIN_PORT" ] && \
+   [ -n "$MYSQL_PROXY_ADMIN_USER" ] && [ -n "$MYSQL_PROXY_ADMIN_PASSWORD" ]; then
+  echo "Encaminhando MYSQL_PROXY_ADMIN_* para sync de usuários no ProxySQL ($MYSQL_PROXY_ADMIN_HOST:$MYSQL_PROXY_ADMIN_PORT)"
+  PROXY_ADMIN_ENV_ARGS=(
+    -e "MYSQL_PROXY_ADMIN_HOST=$MYSQL_PROXY_ADMIN_HOST"
+    -e "MYSQL_PROXY_ADMIN_PORT=$MYSQL_PROXY_ADMIN_PORT"
+    -e "MYSQL_PROXY_ADMIN_USER=$MYSQL_PROXY_ADMIN_USER"
+    -e "MYSQL_PROXY_ADMIN_PASSWORD=$MYSQL_PROXY_ADMIN_PASSWORD"
+  )
+fi
+
+# SEC-0024: senhas dos app users (users.json usa placeholders ${USERS_PASSWORD_*})
+# vêm do .env raiz (não versionado) e são encaminhadas ao container via ambiente.
+USER_PASSWORD_ENV_ARGS=()
+for var in $(compgen -v | grep -E '^USERS_PASSWORD_' || true); do
+  USER_PASSWORD_ENV_ARGS+=( -e "$var=${!var}" )
+done
+echo "[SEC-0024] Encaminhando $(( ${#USER_PASSWORD_ENV_ARGS[@]} / 2 )) variáveis USERS_PASSWORD_* para o container"
+
 docker run --rm \
   --name "$CONTAINER_NAME" \
   --network "$NETWORK" \
   -v "$PROJECT_ROOT":/workspace \
   -w /workspace/jk-database \
-  -e MYSQL_HOST="mysql" \
-  -e MYSQL_EXPOSED_PORT="3306" \
+  "${ADMIN_ENV_ARGS[@]}" \
+  "${PROXY_ADMIN_ENV_ARGS[@]}" \
+  "${USER_PASSWORD_ENV_ARGS[@]}" \
   "$IMAGE_NAME:latest" \
-  bash -c "figlet JK-DATABASE && python create_databases.py && python create_users.py"
+  bash -c "figlet JK-DATABASE && python create_databases.py && python create_users.py && python create_dummy_tables.py && python proxysql_users.py"
 
   echo $?
