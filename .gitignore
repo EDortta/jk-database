@@ -141,10 +141,22 @@ web_modules/
 
 # dotenv environment variable files
 .env
+.env.*
+!.env.example
+!.env.*.example
 .env.development.local
 .env.test.local
 .env.production.local
 .env.local
+
+# SEC-0024 — arquivos com segredos reais (senhas de usuários de banco) nunca versionados
+users.local.json
+users.*.local.json
+*.secrets.json
+*.secrets.env
+
+# SEC-0190 — fallback de credenciais root removido do versionamento; nunca re-adicionar
+my-credentials.json
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache

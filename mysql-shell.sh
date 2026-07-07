@@ -39,11 +39,15 @@ else
   DOCKER_TTY="-i"
 fi
 
+# SEC-0278: senha vai por MYSQL_PWD (repassada por nome via -e), nunca no argv —
+# evita exposição em ps/proc/cmdline e no argv do docker run visível no host.
+export MYSQL_PWD="$DB_PASS"
+
 # Try docker exec into the running container first
 if docker ps --format '{{.Names}}' | grep -q "^${MYSQL_CONTAINER}\$"; then
   echo "Conectando ao container '$MYSQL_CONTAINER' como usuário '$DB_USER'..." >&2
-  docker exec $DOCKER_TTY "$MYSQL_CONTAINER" \
-    mysql -u "$DB_USER" -p"$DB_PASS"
+  docker exec $DOCKER_TTY -e MYSQL_PWD "$MYSQL_CONTAINER" \
+    mysql -u "$DB_USER"
 else
   # Container not running — connect via exposed port using a temporary mysql-client container
   EXPOSED_PORT="${MYSQL_EXPOSED_PORT:-33061}"
@@ -51,6 +55,7 @@ else
   echo "Tentando conexão via porta exposta $EXPOSED_PORT (host: 127.0.0.1)..." >&2
   docker run --rm $DOCKER_TTY \
     --network host \
+    -e MYSQL_PWD \
     mysql:8.0 \
-    mysql -h 127.0.0.1 -P "$EXPOSED_PORT" -u "$DB_USER" -p"$DB_PASS"
+    mysql -h 127.0.0.1 -P "$EXPOSED_PORT" -u "$DB_USER"
 fi

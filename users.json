@@ -3,7 +3,7 @@
     {
       "name": "core_user",
       "host": "%",
-      "password": "Kxs3#Lm@Jk",
+      "password": "${USERS_PASSWORD_CORE_USER}",
       "privileges": [
         {
           "database": "core",
@@ -31,7 +31,7 @@
     {
       "name": "ccb_user",
       "host": "%",
-      "password": "mZ3#Pq@Jk",
+      "password": "${USERS_PASSWORD_CCB_USER}",
       "privileges": [
         {
           "database": "ccb",
@@ -59,7 +59,7 @@
     {
       "name": "employeecredit_user",
       "host": "%",
-      "password": "Qw4#Rt@Jk",
+      "password": "${USERS_PASSWORD_EMPLOYEECREDIT_USER}",
       "privileges": [
         {
           "database": "employeecredit",
@@ -87,7 +87,7 @@
     {
       "name": "fgtsbmp_user",
       "host": "%",
-      "password": "Hk5#Jp@Jk",
+      "password": "${USERS_PASSWORD_FGTSBMP_USER}",
       "privileges": [
         {
           "database": "fgtsbmp",
@@ -115,7 +115,7 @@
     {
       "name": "payrollloanbmp_user",
       "host": "%",
-      "password": "Xc3#Lq@Jk",
+      "password": "${USERS_PASSWORD_PAYROLLLOANBMP_USER}",
       "privileges": [
         {
           "database": "payrollloanbmp",
@@ -143,7 +143,7 @@
     {
       "name": "wh_ingestor_user",
       "host": "%",
-      "password": "axFn940P2NCZsnGt",
+      "password": "${USERS_PASSWORD_WH_INGESTOR_USER}",
       "privileges": [
         {
           "database": "wh_ingestor",
@@ -171,7 +171,7 @@
     {
       "name": "privatelabel_user",
       "host": "%",
-      "password": "Rt4#Vw@Jk",
+      "password": "${USERS_PASSWORD_PRIVATELABEL_USER}",
       "privileges": [
         {
           "database": "privatelabel",
@@ -199,7 +199,7 @@
     {
       "name": "webhook_proxy_user",
       "host": "%",
-      "password": "Wh8kPx2mQ7rLvN3t",
+      "password": "${USERS_PASSWORD_WEBHOOK_PROXY_USER}",
       "privileges": [
         {
           "database": "webhook_proxy",
@@ -227,7 +227,7 @@
     {
       "name": "credit_engine_uy3_user",
       "host": "%",
-      "password": "676623a303aab14c4890860a",
+      "password": "${USERS_PASSWORD_CREDIT_ENGINE_UY3_USER}",
       "privileges": [
         {
           "database": "credit_engine_uy3",
@@ -255,7 +255,7 @@
     {
       "name": "credit_engine_milenio_user",
       "host": "%",
-      "password": "phsPyKvDCrHZbphMxfJDkUr2",
+      "password": "${USERS_PASSWORD_CREDIT_ENGINE_MILENIO_USER}",
       "privileges": [
         {
           "database": "credit_engine_milenio",
@@ -283,7 +283,7 @@
     {
       "name": "employee_credit_uy3_user",
       "host": "%",
-      "password": "KQX0hOZMIepiJaPoC4unSCbt",
+      "password": "${USERS_PASSWORD_EMPLOYEE_CREDIT_UY3_USER}",
       "privileges": [
         {
           "database": "employee_credit_uy3",
@@ -311,7 +311,7 @@
     {
       "name": "payroll_margin_registrar_user",
       "host": "%",
-      "password": "BRwfytCe51rJnhILCsIq8L7T",
+      "password": "${USERS_PASSWORD_PAYROLL_MARGIN_REGISTRAR_USER}",
       "privileges": [
         {
           "database": "payroll_margin_registrar",
@@ -339,7 +339,7 @@
     {
       "name": "billing_control_neofin_user",
       "host": "%",
-      "password": "t4NuFuRTyVbYlJy0CNHT",
+      "password": "${USERS_PASSWORD_BILLING_CONTROL_NEOFIN_USER}",
       "privileges": [
         {
           "database": "billing_control_neofin",
@@ -367,7 +367,7 @@
     {
       "name": "dummy_user",
       "host": "%",
-      "password": "dummy_pass",
+      "password": "${USERS_PASSWORD_DUMMY_USER}",
       "privileges": [
         {
           "database": "dummy",
@@ -376,18 +376,7 @@
             "SELECT",
             "INSERT",
             "UPDATE",
-            "DELETE",
-            "CREATE",
-            "ALTER",
-            "DROP",
-            "REFERENCES",
-            "INDEX",
-            "CREATE VIEW",
-            "CREATE ROUTINE",
-            "ALTER ROUTINE",
-            "TRIGGER",
-            "CREATE TEMPORARY TABLES",
-            "LOCK TABLES"
+            "DELETE"
           ]
         }
       ]
