@@ -12,5 +12,7 @@
     "employee_credit_uy3",
     "payroll_margin_registrar",
     "billing_control_neofin",
-    "dummy"
+    "dummy",
+    "credit_engine_vaas",
+    "consig_gateway_banktools"
 ]
