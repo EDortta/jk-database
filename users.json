@@ -394,6 +394,62 @@
           ]
         }
       ]
+    },
+    {
+      "name": "credit_engine_vaas_user",
+      "host": "%",
+      "password": "${USERS_PASSWORD_CREDIT_ENGINE_VAAS_USER}",
+      "privileges": [
+        {
+          "database": "credit_engine_vaas",
+          "tables": "*",
+          "privileges": [
+            "SELECT",
+            "INSERT",
+            "UPDATE",
+            "DELETE",
+            "CREATE",
+            "ALTER",
+            "DROP",
+            "REFERENCES",
+            "INDEX",
+            "CREATE VIEW",
+            "CREATE ROUTINE",
+            "ALTER ROUTINE",
+            "TRIGGER",
+            "CREATE TEMPORARY TABLES",
+            "LOCK TABLES"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "consig_gateway_banktools_user",
+      "host": "%",
+      "password": "${USERS_PASSWORD_CONSIG_GATEWAY_BANKTOOLS_USER}",
+      "privileges": [
+        {
+          "database": "consig_gateway_banktools",
+          "tables": "*",
+          "privileges": [
+            "SELECT",
+            "INSERT",
+            "UPDATE",
+            "DELETE",
+            "CREATE",
+            "ALTER",
+            "DROP",
+            "REFERENCES",
+            "INDEX",
+            "CREATE VIEW",
+            "CREATE ROUTINE",
+            "ALTER ROUTINE",
+            "TRIGGER",
+            "CREATE TEMPORARY TABLES",
+            "LOCK TABLES"
+          ]
+        }
+      ]
     }
   ]
 }
