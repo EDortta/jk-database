@@ -17,18 +17,30 @@ source "$ENV_FILE"
 set +a
 
 NETWORK="${DOCKER_HOST_NETWORK:-jk-network}"
-IMAGE_NAME="jk-db-setup"
-CONTAINER_NAME="jk-db-setup"
+
+# Escopa imagem e container pelo nome da rede do ambiente. sbox, apresentacao e
+# contratacao co-habitam o mesmo host Docker; com o nome fixo "jk-db-setup", o
+# provisionamento de um ambiente derrubava o container do outro (o `docker rm -f`
+# e o `--name` colidiam) e a mensagem "APP_NAME já em uso" aparecia. A rede
+# (DOCKER_HOST_NETWORK) já é única por ambiente, então serve de discriminador.
+# Tag de imagem exige minúsculas.
+ENV_SUFFIX="$(printf '%s' "$NETWORK" | tr '[:upper:]' '[:lower:]')"
+IMAGE_NAME="jk-db-setup-${ENV_SUFFIX}"
+CONTAINER_NAME="jk-db-setup-${ENV_SUFFIX}"
 
 echo "Rede Docker: $NETWORK"
 echo "Construindo/usando imagem $IMAGE_NAME para rodar os scripts de banco."
 
 docker build -t "$IMAGE_NAME:latest" "$SCRIPT_DIR"
 
-if docker ps -a --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}\$"; then
-  echo "Removendo container antigo ${CONTAINER_NAME}..."
-  docker rm -f "$CONTAINER_NAME" >/dev/null 2>&1 || true
-fi
+# Remove o container escopado deste ambiente e também o legado sem sufixo, que
+# versões anteriores deixavam para trás (rastro que confundia os ambientes).
+for stale in "$CONTAINER_NAME" jk-db-setup; do
+  if docker ps -a --format '{{.Names}}' | grep -q "^${stale}\$"; then
+    echo "Removendo container antigo ${stale}..."
+    docker rm -f "$stale" >/dev/null 2>&1 || true
+  fi
+done
 
 ADMIN_ENV_ARGS=()
 if [ -n "$MYSQL_ADMIN_HOST" ] && [ -n "$MYSQL_ADMIN_PORT" ] && \
