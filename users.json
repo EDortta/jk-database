@@ -3,7 +3,7 @@
     {
       "name": "core_user",
       "host": "%",
-      "password": "${USERS_PASSWORD_CORE_USER}",
+      "password": "Kxs3#Lm@Jk",
       "privileges": [
         {
           "database": "core",
@@ -23,8 +23,7 @@
             "ALTER ROUTINE",
             "TRIGGER",
             "CREATE TEMPORARY TABLES",
-            "LOCK TABLES",
-            "EVENT"
+            "LOCK TABLES"
           ]
         }
       ]
@@ -32,7 +31,7 @@
     {
       "name": "ccb_user",
       "host": "%",
-      "password": "${USERS_PASSWORD_CCB_USER}",
+      "password": "mZ3#Pq@Jk",
       "privileges": [
         {
           "database": "ccb",
@@ -52,8 +51,7 @@
             "ALTER ROUTINE",
             "TRIGGER",
             "CREATE TEMPORARY TABLES",
-            "LOCK TABLES",
-            "EVENT"
+            "LOCK TABLES"
           ]
         }
       ]
@@ -61,7 +59,7 @@
     {
       "name": "employeecredit_user",
       "host": "%",
-      "password": "${USERS_PASSWORD_EMPLOYEECREDIT_USER}",
+      "password": "Qw4#Rt@Jk",
       "privileges": [
         {
           "database": "employeecredit",
@@ -81,8 +79,7 @@
             "ALTER ROUTINE",
             "TRIGGER",
             "CREATE TEMPORARY TABLES",
-            "LOCK TABLES",
-            "EVENT"
+            "LOCK TABLES"
           ]
         }
       ]
@@ -90,7 +87,7 @@
     {
       "name": "fgtsbmp_user",
       "host": "%",
-      "password": "${USERS_PASSWORD_FGTSBMP_USER}",
+      "password": "Hk5#Jp@Jk",
       "privileges": [
         {
           "database": "fgtsbmp",
@@ -110,8 +107,7 @@
             "ALTER ROUTINE",
             "TRIGGER",
             "CREATE TEMPORARY TABLES",
-            "LOCK TABLES",
-            "EVENT"
+            "LOCK TABLES"
           ]
         }
       ]
@@ -119,7 +115,7 @@
     {
       "name": "payrollloanbmp_user",
       "host": "%",
-      "password": "${USERS_PASSWORD_PAYROLLLOANBMP_USER}",
+      "password": "Xc3#Lq@Jk",
       "privileges": [
         {
           "database": "payrollloanbmp",
@@ -139,8 +135,7 @@
             "ALTER ROUTINE",
             "TRIGGER",
             "CREATE TEMPORARY TABLES",
-            "LOCK TABLES",
-            "EVENT"
+            "LOCK TABLES"
           ]
         }
       ]
@@ -148,7 +143,7 @@
     {
       "name": "wh_ingestor_user",
       "host": "%",
-      "password": "${USERS_PASSWORD_WH_INGESTOR_USER}",
+      "password": "axFn940P2NCZsnGt",
       "privileges": [
         {
           "database": "wh_ingestor",
@@ -168,8 +163,7 @@
             "ALTER ROUTINE",
             "TRIGGER",
             "CREATE TEMPORARY TABLES",
-            "LOCK TABLES",
-            "EVENT"
+            "LOCK TABLES"
           ]
         }
       ]
@@ -177,7 +171,7 @@
     {
       "name": "privatelabel_user",
       "host": "%",
-      "password": "${USERS_PASSWORD_PRIVATELABEL_USER}",
+      "password": "Rt4#Vw@Jk",
       "privileges": [
         {
           "database": "privatelabel",
@@ -197,8 +191,7 @@
             "ALTER ROUTINE",
             "TRIGGER",
             "CREATE TEMPORARY TABLES",
-            "LOCK TABLES",
-            "EVENT"
+            "LOCK TABLES"
           ]
         }
       ]
@@ -206,7 +199,7 @@
     {
       "name": "webhook_proxy_user",
       "host": "%",
-      "password": "${USERS_PASSWORD_WEBHOOK_PROXY_USER}",
+      "password": "Wh8kPx2mQ7rLvN3t",
       "privileges": [
         {
           "database": "webhook_proxy",
@@ -226,8 +219,7 @@
             "ALTER ROUTINE",
             "TRIGGER",
             "CREATE TEMPORARY TABLES",
-            "LOCK TABLES",
-            "EVENT"
+            "LOCK TABLES"
           ]
         }
       ]
@@ -235,7 +227,7 @@
     {
       "name": "credit_engine_uy3_user",
       "host": "%",
-      "password": "${USERS_PASSWORD_CREDIT_ENGINE_UY3_USER}",
+      "password": "676623a303aab14c4890860a",
       "privileges": [
         {
           "database": "credit_engine_uy3",
@@ -255,8 +247,7 @@
             "ALTER ROUTINE",
             "TRIGGER",
             "CREATE TEMPORARY TABLES",
-            "LOCK TABLES",
-            "EVENT"
+            "LOCK TABLES"
           ]
         }
       ]
@@ -264,7 +255,7 @@
     {
       "name": "credit_engine_milenio_user",
       "host": "%",
-      "password": "${USERS_PASSWORD_CREDIT_ENGINE_MILENIO_USER}",
+      "password": "phsPyKvDCrHZbphMxfJDkUr2",
       "privileges": [
         {
           "database": "credit_engine_milenio",
@@ -284,8 +275,7 @@
             "ALTER ROUTINE",
             "TRIGGER",
             "CREATE TEMPORARY TABLES",
-            "LOCK TABLES",
-            "EVENT"
+            "LOCK TABLES"
           ]
         }
       ]
@@ -293,7 +283,7 @@
     {
       "name": "employee_credit_uy3_user",
       "host": "%",
-      "password": "${USERS_PASSWORD_EMPLOYEE_CREDIT_UY3_USER}",
+      "password": "KQX0hOZMIepiJaPoC4unSCbt",
       "privileges": [
         {
           "database": "employee_credit_uy3",
@@ -313,8 +303,7 @@
             "ALTER ROUTINE",
             "TRIGGER",
             "CREATE TEMPORARY TABLES",
-            "LOCK TABLES",
-            "EVENT"
+            "LOCK TABLES"
           ]
         }
       ]
@@ -322,7 +311,7 @@
     {
       "name": "payroll_margin_registrar_user",
       "host": "%",
-      "password": "${USERS_PASSWORD_PAYROLL_MARGIN_REGISTRAR_USER}",
+      "password": "BRwfytCe51rJnhILCsIq8L7T",
       "privileges": [
         {
           "database": "payroll_margin_registrar",
@@ -342,8 +331,7 @@
             "ALTER ROUTINE",
             "TRIGGER",
             "CREATE TEMPORARY TABLES",
-            "LOCK TABLES",
-            "EVENT"
+            "LOCK TABLES"
           ]
         }
       ]
@@ -351,7 +339,7 @@
     {
       "name": "billing_control_neofin_user",
       "host": "%",
-      "password": "${USERS_PASSWORD_BILLING_CONTROL_NEOFIN_USER}",
+      "password": "t4NuFuRTyVbYlJy0CNHT",
       "privileges": [
         {
           "database": "billing_control_neofin",
@@ -371,8 +359,7 @@
             "ALTER ROUTINE",
             "TRIGGER",
             "CREATE TEMPORARY TABLES",
-            "LOCK TABLES",
-            "EVENT"
+            "LOCK TABLES"
           ]
         }
       ]
@@ -380,7 +367,7 @@
     {
       "name": "dummy_user",
       "host": "%",
-      "password": "${USERS_PASSWORD_DUMMY_USER}",
+      "password": "dummy_pass",
       "privileges": [
         {
           "database": "dummy",
@@ -390,7 +377,17 @@
             "INSERT",
             "UPDATE",
             "DELETE",
-            "EVENT"
+            "CREATE",
+            "ALTER",
+            "DROP",
+            "REFERENCES",
+            "INDEX",
+            "CREATE VIEW",
+            "CREATE ROUTINE",
+            "ALTER ROUTINE",
+            "TRIGGER",
+            "CREATE TEMPORARY TABLES",
+            "LOCK TABLES"
           ]
         }
       ]
@@ -398,7 +395,7 @@
     {
       "name": "credit_engine_vaas_user",
       "host": "%",
-      "password": "${USERS_PASSWORD_CREDIT_ENGINE_VAAS_USER}",
+      "password": "Vs7#Kq@Jk",
       "privileges": [
         {
           "database": "credit_engine_vaas",
@@ -426,7 +423,7 @@
     {
       "name": "consig_gateway_banktools_user",
       "host": "%",
-      "password": "${USERS_PASSWORD_CONSIG_GATEWAY_BANKTOOLS_USER}",
+      "password": "Cg5#Bt@Jk",
       "privileges": [
         {
           "database": "consig_gateway_banktools",
