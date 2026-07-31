@@ -447,6 +447,22 @@
           ]
         }
       ]
+    },
+    {
+      "name": "cep_user",
+      "host": "%",
+      "password": "${USERS_PASSWORD_CEP_USER}",
+      "privileges": [
+        {
+          "database": "cep",
+          "tables": "*",
+          "privileges": [
+            "SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "ALTER", "DROP",
+            "REFERENCES", "INDEX", "CREATE VIEW", "CREATE ROUTINE", "ALTER ROUTINE",
+            "TRIGGER", "CREATE TEMPORARY TABLES", "LOCK TABLES"
+          ]
+        }
+      ]
     }
   ]
 }

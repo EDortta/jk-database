@@ -14,5 +14,6 @@
     "billing_control_neofin",
     "dummy",
     "credit_engine_vaas",
-    "consig_gateway_banktools"
+    "consig_gateway_banktools",
+    "cep"
 ]
