@@ -451,7 +451,7 @@
     {
       "name": "cep_user",
       "host": "%",
-      "password": "${USERS_PASSWORD_CEP_USER}",
+      "password": "Cp4#Nx@Jk",
       "privileges": [
         {
           "database": "cep",
