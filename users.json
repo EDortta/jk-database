@@ -449,6 +449,34 @@
       ]
     },
     {
+      "name": "banktools_user",
+      "host": "%",
+      "password": "Bk6#Rf@Jk",
+      "privileges": [
+        {
+          "database": "banktools",
+          "tables": "*",
+          "privileges": [
+            "SELECT",
+            "INSERT",
+            "UPDATE",
+            "DELETE",
+            "CREATE",
+            "ALTER",
+            "DROP",
+            "REFERENCES",
+            "INDEX",
+            "CREATE VIEW",
+            "CREATE ROUTINE",
+            "ALTER ROUTINE",
+            "TRIGGER",
+            "CREATE TEMPORARY TABLES",
+            "LOCK TABLES"
+          ]
+        }
+      ]
+    },
+    {
       "name": "cep_user",
       "host": "%",
       "password": "Cp4#Nx@Jk",
