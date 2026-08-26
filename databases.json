@@ -15,5 +15,6 @@
     "dummy",
     "credit_engine_vaas",
     "consig_gateway_banktools",
+    "banktools",
     "cep"
 ]
